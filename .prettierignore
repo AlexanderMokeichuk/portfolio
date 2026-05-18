@@ -1,0 +1,27 @@
+# build output
+.next/
+out/
+build/
+dist/
+
+# dependencies
+node_modules/
+
+# lockfiles (managed by package manager)
+bun.lock
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# generated
+next-env.d.ts
+*.tsbuildinfo
+
+# logs
+*.log
+
+# env
+.env*
+
+# misc
+.DS_Store
