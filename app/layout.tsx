@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter_Tight, Instrument_Serif, JetBrains_Mono } from "next/font/google";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
 import "./globals.css";
 
 const interTight = Inter_Tight({
@@ -38,7 +40,11 @@ export default function RootLayout({
       lang="en"
       className={`${interTight.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}
     >
-      <body className="min-h-dvh antialiased">{children}</body>
+      <body className="flex min-h-dvh flex-col antialiased">
+        <Header />
+        <main className="flex-1 pt-20 md:pt-24">{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }
