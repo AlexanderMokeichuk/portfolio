@@ -1,26 +1,43 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { motion, useReducedMotion } from "motion/react";
 
 const INTERACTIVE_SELECTOR =
   "a, button, [role='button'], input, textarea, select, [data-cursor-hover]";
 
+function subscribeToCapability(callback: () => void) {
+  const mq = window.matchMedia("(hover: hover) and (pointer: fine)");
+  mq.addEventListener("change", callback);
+  return () => mq.removeEventListener("change", callback);
+}
+
+function getCapability() {
+  return window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+}
+
+function getServerCapability() {
+  return false;
+}
+
 export function Cursor() {
-  const [enabled, setEnabled] = useState(false);
+  const hoverCapable = useSyncExternalStore(
+    subscribeToCapability,
+    getCapability,
+    getServerCapability,
+  );
+  const shouldReduceMotion = useReducedMotion();
   const [hovering, setHovering] = useState(false);
+  const [touchDetected, setTouchDetected] = useState(false);
+
   const positionRef = useRef({ x: 0, y: 0 });
   const dotRef = useRef<HTMLDivElement | null>(null);
   const ringRef = useRef<HTMLDivElement | null>(null);
-  const shouldReduceMotion = useReducedMotion();
+
+  const enabled = hoverCapable && !shouldReduceMotion && !touchDetected;
 
   useEffect(() => {
-    if (shouldReduceMotion) return;
-
-    const isTouch = window.matchMedia("(hover: none), (pointer: coarse)").matches;
-    if (isTouch) return;
-
-    setEnabled(true);
+    if (!enabled) return;
 
     const handleMove = (event: MouseEvent) => {
       positionRef.current = { x: event.clientX, y: event.clientY };
@@ -40,6 +57,10 @@ export function Cursor() {
       }
     };
 
+    const handleTouch = () => {
+      setTouchDetected(true);
+    };
+
     let rafId = 0;
     const tick = () => {
       const { x, y } = positionRef.current;
@@ -56,6 +77,7 @@ export function Cursor() {
     window.addEventListener("mousemove", handleMove, { passive: true });
     window.addEventListener("mouseover", handleOver, { passive: true });
     window.addEventListener("mouseout", handleOut, { passive: true });
+    window.addEventListener("touchstart", handleTouch, { passive: true, once: true });
     rafId = requestAnimationFrame(tick);
 
     return () => {
@@ -63,9 +85,10 @@ export function Cursor() {
       window.removeEventListener("mousemove", handleMove);
       window.removeEventListener("mouseover", handleOver);
       window.removeEventListener("mouseout", handleOut);
+      window.removeEventListener("touchstart", handleTouch);
       cancelAnimationFrame(rafId);
     };
-  }, [shouldReduceMotion]);
+  }, [enabled]);
 
   if (!enabled) return null;
 
