@@ -1,6 +1,7 @@
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
+import { GlitchText } from "@/components/ui/GlitchText";
 
 export function Hero() {
   return (
@@ -29,7 +30,9 @@ export function Hero() {
               <span className="text-ink-3 italic">post-release</span>{" "}
               <span className="text-ink-3 italic">bugs.</span>
             </span>
-            <span className="text-accent block italic">One developer.</span>
+            <GlitchText as="span" className="text-accent block italic">
+              One developer.
+            </GlitchText>
           </h1>
         </Reveal>
 
