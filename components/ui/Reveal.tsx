@@ -1,31 +1,31 @@
 "use client";
 
-import { type HTMLAttributes, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { cn } from "@/lib/cn";
 
-type RevealProps = Omit<HTMLAttributes<HTMLDivElement>, "children"> & {
+type RevealProps = {
   children: ReactNode;
   delay?: number;
-  as?: "div" | "section" | "article" | "header" | "footer" | "li";
+  className?: string;
+  id?: string;
 };
 
-export function Reveal({ children, delay = 0, as = "div", className, ...props }: RevealProps) {
+export function Reveal({ children, delay = 0, className, id }: RevealProps) {
   const shouldReduceMotion = useReducedMotion();
 
-  const MotionTag = motion[as];
-
   if (shouldReduceMotion) {
-    const Tag = as;
     return (
-      <Tag className={className} {...props}>
+      <div id={id} className={className}>
         {children}
-      </Tag>
+      </div>
     );
   }
 
   return (
-    <MotionTag
+    <motion.div
+      id={id}
+      className={cn(className)}
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "0px 0px -80px 0px" }}
@@ -34,10 +34,8 @@ export function Reveal({ children, delay = 0, as = "div", className, ...props }:
         delay,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className={cn(className)}
-      {...props}
     >
       {children}
-    </MotionTag>
+    </motion.div>
   );
 }
