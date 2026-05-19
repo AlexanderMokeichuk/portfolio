@@ -6,6 +6,7 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { GlitchText } from "@/components/ui/GlitchText";
+import { HeroCanvas } from "@/app/_components/HeroCanvas";
 
 const SEQUENCE_LINES = 4;
 const LINE_DURATION_MS = 400;
@@ -25,7 +26,7 @@ export function Hero() {
   useEffect(() => {
     if (shouldReduceMotion) return;
 
-    let timeouts: number[] = [];
+    const timeouts: number[] = [];
     let nextCycleTimeout: number | undefined;
 
     const runSequence = () => {
@@ -50,7 +51,8 @@ export function Hero() {
   }, [shouldReduceMotion]);
 
   return (
-    <section className="relative pt-12 pb-32 md:pt-20 md:pb-40">
+    <section className="relative overflow-hidden pt-12 pb-32 md:pt-20 md:pb-40">
+      <HeroCanvas />
       <Container>
         <Reveal>
           <div className="flex flex-col gap-2 font-mono text-[11px] tracking-[0.18em] uppercase md:flex-row md:items-center md:gap-3">
