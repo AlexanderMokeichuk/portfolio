@@ -3,6 +3,9 @@ import { PROJECTS } from "@/lib/projects";
 import { ProjectEntry } from "./ProjectEntry";
 
 export function Work() {
+  const productionCount = PROJECTS.filter((p) => p.status === "production").length;
+  const inDevelopmentCount = PROJECTS.filter((p) => p.status === "in-development").length;
+
   return (
     <section id="work" className="scroll-mt-24 py-24 md:py-32">
       <Container>
@@ -19,13 +22,20 @@ export function Work() {
             </h2>
           </div>
 
-          <p className="text-ink-3 max-w-xs font-mono text-[11px] leading-relaxed tracking-[0.05em]">
-            Four projects.
-            <br />
-            Three in production.
-            <br />
-            One in active development.
-          </p>
+          <dl className="text-ink-3 flex gap-8 font-mono text-[11px] tracking-[0.14em] uppercase md:flex-col md:items-end md:gap-2 md:text-right">
+            <div className="flex items-baseline gap-2 md:flex-col md:items-end md:gap-0">
+              <dt>Production</dt>
+              <dd className="text-accent font-serif text-2xl leading-none md:text-3xl">
+                {String(productionCount).padStart(2, "0")}
+              </dd>
+            </div>
+            <div className="flex items-baseline gap-2 md:flex-col md:items-end md:gap-0">
+              <dt>In development</dt>
+              <dd className="text-ink font-serif text-2xl leading-none md:text-3xl">
+                {String(inDevelopmentCount).padStart(2, "0")}
+              </dd>
+            </div>
+          </dl>
         </header>
 
         <div className="mt-16 md:mt-20">
