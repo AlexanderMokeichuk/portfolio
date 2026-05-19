@@ -20,10 +20,16 @@ export function ProjectEntry({ project }: ProjectEntryProps) {
     <article
       id={project.slug}
       className={cn(
-        "group border-line/60 scroll-mt-24 border-t",
+        "group border-line/60 relative scroll-mt-24 border-t transition-all duration-500 ease-out",
+        "hover:pl-4 md:hover:pl-6",
         isFeatured ? "py-16 md:py-24" : "py-12 md:py-16",
       )}
     >
+      <span
+        aria-hidden
+        className="bg-accent absolute top-0 bottom-0 left-0 w-px origin-top scale-y-0 transition-transform duration-500 ease-out group-hover:scale-y-100"
+      />
+
       <header className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between md:gap-8">
         <div className="flex flex-col gap-3 md:gap-2">
           <p className="text-ink-3 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[11px] tracking-[0.18em] uppercase">
@@ -54,10 +60,11 @@ export function ProjectEntry({ project }: ProjectEntryProps) {
 
         <Link
           href={`/work/${project.slug}`}
-          className="text-ink-2 hover:text-accent inline-flex items-center gap-1.5 self-start font-mono text-[11px] tracking-[0.14em] uppercase transition-colors"
+          className="text-ink-2 hover:text-accent group-hover:text-accent inline-flex items-center gap-1.5 self-start font-mono text-[11px] tracking-[0.14em] uppercase transition-colors"
+          data-cursor-hover
         >
           Read case study
-          <span aria-hidden className="transition-transform group-hover:translate-x-0.5">
+          <span aria-hidden className="transition-transform group-hover:translate-x-1">
             ↗
           </span>
         </Link>
@@ -65,7 +72,8 @@ export function ProjectEntry({ project }: ProjectEntryProps) {
 
       <h3
         className={cn(
-          "mt-6 max-w-[20ch] font-serif leading-[1.05] tracking-tight md:mt-10",
+          "mt-6 max-w-[20ch] font-serif leading-[1.05] tracking-tight transition-colors duration-500 md:mt-10",
+          "group-hover:text-accent",
           isFeatured ? "text-[clamp(2.5rem,6vw,5.5rem)]" : "text-[clamp(1.75rem,3.5vw,3.5rem)]",
         )}
       >

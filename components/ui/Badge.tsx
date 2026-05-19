@@ -8,17 +8,18 @@ type BadgeProps = HTMLAttributes<HTMLSpanElement> & {
 };
 
 const VARIANT_CLASSES: Record<BadgeVariant, string> = {
-  default: "border-line bg-surface text-ink-2",
-  accent: "border-accent/40 bg-accent-soft text-accent",
-  muted: "border-line-2 bg-transparent text-ink-3",
-  outline: "border-line bg-transparent text-ink-2",
+  default:
+    "border-line bg-surface text-ink-2 hover:border-accent/40 hover:text-ink hover:bg-accent-soft",
+  accent: "border-accent/40 bg-accent-soft text-accent hover:border-accent hover:bg-accent/15",
+  muted: "border-line-2 bg-transparent text-ink-3 hover:border-line hover:text-ink-2",
+  outline: "border-line bg-transparent text-ink-2 hover:border-accent/40 hover:text-accent",
 };
 
 export function Badge({ variant = "default", className, children, ...props }: BadgeProps) {
   return (
     <span
       className={cn(
-        "inline-flex items-center border px-2 py-0.5 font-mono text-[11px] tracking-[0.04em] whitespace-nowrap",
+        "inline-flex items-center border px-2 py-0.5 font-mono text-[11px] tracking-[0.04em] whitespace-nowrap transition-colors duration-200",
         VARIANT_CLASSES[variant],
         className,
       )}
