@@ -1,14 +1,12 @@
-import {type ButtonHTMLAttributes, type AnchorHTMLAttributes, forwardRef} from "react";
+import { type ButtonHTMLAttributes, type AnchorHTMLAttributes, forwardRef } from "react";
 import Link from "next/link";
-import {cn} from "@/lib/cn";
+import { cn } from "@/lib/cn";
 
 type Variant = "primary" | "secondary" | "ghost";
 
 const VARIANT_CLASSES: Record<Variant, string> = {
-  primary:
-    "border-accent text-accent hover:bg-accent hover:text-black active:bg-accent/90",
-  secondary:
-    "border-line text-ink-2 hover:border-ink hover:text-ink",
+  primary: "border-accent text-accent hover:bg-accent hover:text-black active:bg-accent/90",
+  secondary: "border-line text-ink-2 hover:border-ink hover:text-ink",
   ghost: "border-transparent text-ink-2 hover:text-ink",
 };
 
@@ -20,8 +18,7 @@ type CommonProps = {
   className?: string;
 };
 
-type ButtonAsButton = CommonProps &
-  ButtonHTMLAttributes<HTMLButtonElement> & { href?: undefined };
+type ButtonAsButton = CommonProps & ButtonHTMLAttributes<HTMLButtonElement> & { href?: undefined };
 
 type ButtonAsLink = CommonProps &
   Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href"> & { href: string };
@@ -29,11 +26,11 @@ type ButtonAsLink = CommonProps &
 type ButtonProps = ButtonAsButton | ButtonAsLink;
 
 export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
-  function Button({variant = "primary", className, children, ...props}, ref) {
+  function Button({ variant = "primary", className, children, ...props }, ref) {
     const classes = cn(BASE_CLASSES, VARIANT_CLASSES[variant], className);
 
     if ("href" in props && props.href !== undefined) {
-      const {href, ...anchorProps} = props;
+      const { href, ...anchorProps } = props;
       const isExternal = href.startsWith("http") || href.startsWith("mailto:");
       return (
         <Link
