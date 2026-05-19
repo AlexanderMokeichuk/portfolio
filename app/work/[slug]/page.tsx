@@ -1,6 +1,8 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { PROJECTS } from "@/lib/projects";
+import { CaseStudyHero } from "./_components/CaseStudyHero";
+import { CaseStudySection } from "./_components/CaseStudySection";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -35,9 +37,12 @@ export default async function CaseStudyPage({ params }: PageProps) {
   }
 
   return (
-    <div className="py-24">
-      <h1>{project.title}</h1>
-      <p>Case study coming soon — under construction.</p>
-    </div>
+    <>
+      <CaseStudyHero project={project} />
+
+      <CaseStudySection label="01 / Context" title="Skeleton placeholder">
+        <p className="text-ink-2 leading-relaxed">Content for the Context section comes next.</p>
+      </CaseStudySection>
+    </>
   );
 }
