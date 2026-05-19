@@ -5,18 +5,16 @@ export function Hero() {
   return (
     <section className="relative pt-12 pb-32 md:pt-20 md:pb-40">
       <Container>
-        <p className="text-ink-2 flex items-center gap-3 font-mono text-[11px] tracking-[0.18em] uppercase">
-          <span aria-hidden className="bg-accent inline-block size-1.5 rounded-full" />
-          Available for work
-          <span aria-hidden className="text-ink-3">
+        <div className="flex flex-col gap-2 font-mono text-[11px] tracking-[0.18em] uppercase md:flex-row md:items-center md:gap-3">
+          <p className="text-ink-2 flex items-center gap-2">
+            <span aria-hidden className="bg-accent inline-block size-1.5 rounded-full" />
+            Available for work
+          </p>
+          <span aria-hidden className="text-ink-3 hidden md:inline">
             ·
           </span>
-          <span className="text-ink-3">Bishkek, KG</span>
-          <span aria-hidden className="text-ink-3">
-            ·
-          </span>
-          <span className="text-ink-3">UTC+6</span>
-        </p>
+          <p className="text-ink-3">Bishkek, KG · UTC+6</p>
+        </div>
 
         <h1 className="mt-10 max-w-[18ch] font-serif text-[clamp(2.75rem,8vw,7.5rem)] leading-[0.95] tracking-tight md:mt-14">
           <span className="block">Three production</span>
