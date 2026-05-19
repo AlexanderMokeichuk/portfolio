@@ -3,6 +3,7 @@ import { Inter_Tight, Instrument_Serif, JetBrains_Mono } from "next/font/google"
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import "./globals.css";
+import { Cursor } from "@/components/ui/Cursor";
 
 const interTight = Inter_Tight({
   variable: "--font-sans",
@@ -41,6 +42,7 @@ export default function RootLayout({
       className={`${interTight.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}
     >
       <body className="flex min-h-dvh flex-col antialiased">
+        <Cursor />
         <Header />
         <main className="flex-1 pt-20 md:pt-24">{children}</main>
         <Footer />
