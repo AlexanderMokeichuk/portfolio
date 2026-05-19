@@ -8,14 +8,16 @@ type GlitchTextProps = {
   children: string;
   className?: string;
   as?: "span" | "div";
+  active?: boolean;
 };
 
-export function GlitchText({ children, className, as = "span" }: GlitchTextProps) {
-  const [active, setActive] = useState(false);
+export function GlitchText({ children, className, as = "span", active }: GlitchTextProps) {
+  const [hoverActive, setHoverActive] = useState(false);
   const shouldReduceMotion = useReducedMotion();
 
   const Tag = as;
   const text = children;
+  const isGlitching = !shouldReduceMotion && (hoverActive || active === true);
 
   if (shouldReduceMotion) {
     return <Tag className={className}>{text}</Tag>;
@@ -24,14 +26,14 @@ export function GlitchText({ children, className, as = "span" }: GlitchTextProps
   return (
     <Tag
       className={cn("relative inline-block", className)}
-      onMouseEnter={() => setActive(true)}
-      onMouseLeave={() => setActive(false)}
+      onMouseEnter={() => setHoverActive(true)}
+      onMouseLeave={() => setHoverActive(false)}
       data-cursor-hover
     >
-      <span aria-hidden className={cn("relative z-10", active && "glitch-base")}>
+      <span aria-hidden className={cn("relative z-10", isGlitching && "glitch-base")}>
         {text}
       </span>
-      {active && (
+      {isGlitching && (
         <>
           <span
             aria-hidden
