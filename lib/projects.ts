@@ -19,6 +19,7 @@ export type Project = {
     value: string;
   }[];
   featured?: boolean;
+  hasCaseStudy?: boolean;
   screenshot: {
     src: string | null;
     alt: string;
@@ -65,6 +66,7 @@ export const PROJECTS: Project[] = [
       { label: "Business modules", value: "17+" },
     ],
     featured: true,
+    hasCaseStudy: true,
     screenshot: {
       src: null,
       alt: "Shoro CRM operator dashboard",

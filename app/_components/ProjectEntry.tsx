@@ -58,16 +58,22 @@ export function ProjectEntry({ project }: ProjectEntryProps) {
           </p>
         </div>
 
-        <Link
-          href={`/work/${project.slug}`}
-          className="text-ink-2 hover:text-accent group-hover:text-accent inline-flex items-center gap-1.5 self-start font-mono text-[11px] tracking-[0.14em] uppercase transition-colors"
-          data-cursor-hover
-        >
-          Read case study
-          <span aria-hidden className="transition-transform group-hover:translate-x-1">
-            ↗
+        {project.hasCaseStudy ? (
+          <Link
+            href={`/work/${project.slug}`}
+            className="text-ink-2 hover:text-accent group-hover:text-accent inline-flex items-center gap-1.5 self-start font-mono text-[11px] tracking-[0.14em] uppercase transition-colors"
+            data-cursor-hover
+          >
+            Read case study
+            <span aria-hidden className="transition-transform group-hover:translate-x-1">
+              ↗
+            </span>
+          </Link>
+        ) : (
+          <span className="text-ink-3 inline-flex items-center gap-1.5 self-start font-mono text-[11px] tracking-[0.14em] uppercase">
+            Case study coming soon
           </span>
-        </Link>
+        )}
       </header>
 
       <h3
