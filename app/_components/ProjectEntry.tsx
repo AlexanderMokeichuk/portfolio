@@ -57,7 +57,7 @@ export function ProjectEntry({ project }: ProjectEntryProps) {
           </p>
         </div>
 
-        {project.hasCaseStudy ? (
+        {project.hasCaseStudy && (
           <Link
             href={`/work/${project.slug}`}
             className="text-ink-2 hover:text-accent group-hover:text-accent inline-flex items-center gap-1.5 self-start font-mono text-[11px] tracking-[0.14em] uppercase transition-colors"
@@ -68,10 +68,6 @@ export function ProjectEntry({ project }: ProjectEntryProps) {
               ↗
             </span>
           </Link>
-        ) : (
-          <span className="text-ink-3 inline-flex items-center gap-1.5 self-start font-mono text-[11px] tracking-[0.14em] uppercase">
-            Case study coming soon
-          </span>
         )}
       </header>
 
