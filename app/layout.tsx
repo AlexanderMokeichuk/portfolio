@@ -4,6 +4,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import "./globals.css";
 import { Cursor } from "@/components/ui/Cursor";
+import { Grain } from "@/components/ui/Grain";
 
 const interTight = Inter_Tight({
   variable: "--font-sans",
@@ -39,9 +40,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      data-scroll-behavior="smooth"
       className={`${interTight.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}
     >
       <body className="flex min-h-dvh flex-col antialiased">
+        <Grain />
         <Cursor />
         <Header />
         <main className="flex-1 pt-20 md:pt-24">{children}</main>
