@@ -99,25 +99,26 @@ export const PROJECTS: Project[] = [
     ],
   },
 
-  // TODO: refine with real context — placeholder copy below
   {
     slug: "voda-dispatcher",
     index: "03",
-    period: "2024",
+    period: "2024 — now",
     status: "production",
     company: "Shoro",
-    title: "Dispatcher Mobile App",
+    title: "Field Delivery App",
     tagline:
-      "Cross-platform mobile app for delivery dispatchers. Drag-and-drop order queue, real-time status sync with the customer-facing platform.",
+      "Mobile app for field couriers. Replaced paper delivery sheets with a live order queue, drag-and-drop sorting, status sync, and on-route sales. Backed by the same CRM server.",
     role: {
       label: "Mobile, solo",
-      context: "Designed and shipped from requirements to release. Single-handed delivery.",
+      context:
+        "Designed and shipped the React Native app end-to-end. The backend is the existing CRM API; the customer-facing ordering app is a separate team's product.",
     },
-    stack: ["React Native", "Expo", "TypeScript", "Redux Toolkit", "React Query", "AsyncStorage"],
+    stack: ["React Native", "Expo", "TypeScript", "Redux Toolkit", "React Query"],
     highlights: [
-      "Drag-and-drop queue UI optimized for one-handed mobile use",
-      "Real-time status synchronization with the partner customer app",
-      "Daily production use by the delivery team",
+      "Replaced paper delivery sheets — couriers get a live daily order queue with drag-and-drop reordering",
+      "Order statuses sync in real time to the CRM, and onward to 1C; customers see progress in the partner ordering app",
+      "Grew with real usage: couriers started selling on routes, so I added client search by region/address and two sale flows — instant (completed on the spot) and request (lands in CRM for operator review)",
+      "In daily production with ~30 couriers",
     ],
   },
 
