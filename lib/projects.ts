@@ -74,16 +74,15 @@ export const PROJECTS: Project[] = [
     company: "Shoro",
     title: "Shoro Sellers Platform",
     tagline:
-      "Admin platform for managing street-vendor profiles, QR-driven customer ratings, and review analytics. Replaced a legacy PHP MVC system end-to-end.",
+      "Admin platform for managing Shoro's street-vendor network. CRUD over vendor profiles, QR-driven customer ratings, complaint routing, and analytics. Rebuilt a legacy PHP MVC admin end-to-end on a modern stack.",
     role: {
       label: "Full-stack, solo",
       context:
-        "Schema, REST API, admin SPA, mobile bio view, integrations. Built the new stack on top of the existing database without breaking the legacy consumer-facing flow.",
+        "Owned the admin platform end-to-end: REST API, SPA, and the email-alert worker. The customer-facing rating app is built by a separate team — I integrate with it, not own it.",
     },
     stack: [
       "React 19",
       "TypeScript",
-      "Vite",
       "Express",
       "Prisma",
       "MySQL",
@@ -93,13 +92,10 @@ export const PROJECTS: Project[] = [
       "Docker",
     ],
     highlights: [
-      "Migrated a legacy PHP MVC admin to a modern stack while preserving the public-facing rating flow",
-      "Background worker monitors negative reviews and notifies managers within minutes",
-      "Zero post-release issues since launch",
-    ],
-    metrics: [
-      { label: "Migration scope", value: "PHP → JS" },
-      { label: "Post-release bugs", value: "0" },
+      "Rebuilt a legacy PHP MVC admin as a REST API + SPA — chosen so I could own and extend it going forward",
+      "Reproduced the full existing feature set, then improved UX: search, filtering, cleaner workflows",
+      "Email-alert worker routes negative ratings straight to the complaints department",
+      "Generates downloadable per-vendor QR codes that link to the customer rating app",
     ],
   },
 
