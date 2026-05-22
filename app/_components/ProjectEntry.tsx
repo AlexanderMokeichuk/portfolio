@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { type Project } from "@/lib/projects";
 import { Badge } from "@/components/ui/Badge";
 import { cn } from "@/lib/cn";
@@ -110,20 +109,6 @@ export function ProjectEntry({ project }: ProjectEntryProps) {
         </dl>
       )}
 
-      <div className="bg-surface border-line/60 group-hover:border-line relative mt-10 aspect-[16/9] overflow-hidden border transition-colors md:mt-14">
-        {project.screenshot.src ? (
-          <Image
-            src={project.screenshot.src}
-            alt={project.screenshot.alt}
-            fill
-            sizes="(min-width: 1024px) 1024px, 100vw"
-            className="object-cover"
-          />
-        ) : (
-          <ScreenshotPlaceholder slug={project.slug} />
-        )}
-      </div>
-
       <div className="mt-8 grid gap-10 md:mt-12 md:grid-cols-[1.4fr_1fr] md:gap-16">
         <div>
           <p className="text-ink-3 mb-4 font-mono text-[10px] tracking-[0.2em] uppercase">Role</p>
@@ -157,24 +142,5 @@ export function ProjectEntry({ project }: ProjectEntryProps) {
         </div>
       </div>
     </article>
-  );
-}
-
-type ScreenshotPlaceholderProps = {
-  slug: string;
-};
-
-function ScreenshotPlaceholder({ slug }: ScreenshotPlaceholderProps) {
-  return (
-    <div className="absolute inset-0 flex items-center justify-center">
-      <div className="absolute inset-0 [background-image:repeating-linear-gradient(45deg,transparent,transparent_20px,var(--color-line)_20px,var(--color-line)_21px)] opacity-30" />
-      <div className="relative flex flex-col items-center gap-3 px-6 text-center">
-        <span aria-hidden className="text-ink-3 font-serif text-2xl">
-          ▣
-        </span>
-        <p className="text-ink-3 font-mono text-[10px] tracking-[0.2em] uppercase">Screenshot</p>
-        <p className="text-ink-2 font-mono text-[11px]">screenshots/{slug}.png</p>
-      </div>
-    </div>
   );
 }

@@ -20,10 +20,6 @@ export type Project = {
   }[];
   featured?: boolean;
   hasCaseStudy?: boolean;
-  screenshot: {
-    src: string | null;
-    alt: string;
-  };
 };
 
 export const PROJECTS: Project[] = [
@@ -67,10 +63,6 @@ export const PROJECTS: Project[] = [
     ],
     featured: true,
     hasCaseStudy: true,
-    screenshot: {
-      src: null,
-      alt: "Shoro CRM operator dashboard",
-    },
   },
 
   // TODO: refine with real context — placeholder copy below
@@ -109,10 +101,6 @@ export const PROJECTS: Project[] = [
       { label: "Migration scope", value: "PHP → JS" },
       { label: "Post-release bugs", value: "0" },
     ],
-    screenshot: {
-      src: null,
-      alt: "Shoro Sellers admin dashboard",
-    },
   },
 
   // TODO: refine with real context — placeholder copy below
@@ -135,10 +123,6 @@ export const PROJECTS: Project[] = [
       "Real-time status synchronization with the partner customer app",
       "Daily production use by the delivery team",
     ],
-    screenshot: {
-      src: null,
-      alt: "Dispatcher mobile app screens",
-    },
   },
 
   // TODO: refine with real context — placeholder copy below
@@ -171,9 +155,5 @@ export const PROJECTS: Project[] = [
       "All UI components built from scratch — no UI library dependency",
       "Offline-first auth with secure storage and hydration gates",
     ],
-    screenshot: {
-      src: null,
-      alt: "Field operations mobile app",
-    },
   },
 ];
