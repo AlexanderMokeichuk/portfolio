@@ -64,8 +64,6 @@ export const PROJECTS: Project[] = [
     featured: true,
     hasCaseStudy: true,
   },
-
-  // TODO: refine with real context — placeholder copy below
   {
     slug: "shoro-eje-rating",
     index: "02",
@@ -98,7 +96,6 @@ export const PROJECTS: Project[] = [
       "Generates downloadable per-vendor QR codes that link to the customer rating app",
     ],
   },
-
   {
     slug: "voda-dispatcher",
     index: "03",
@@ -121,21 +118,19 @@ export const PROJECTS: Project[] = [
       "In daily production with ~30 couriers",
     ],
   },
-
-  // TODO: refine with real context — placeholder copy below
   {
     slug: "shoro-field-ops",
     index: "04",
     period: "2026 — in development",
     status: "in-development",
     company: "Shoro",
-    title: "Field Operations Mobile App",
+    title: "Field Operations App",
     tagline:
-      "Mobile-first operations platform for field managers. Shift wizards, route planning, QR-based inventory, offline-first auth. Designed end-to-end from requirements to schema to UI.",
+      "Mobile platform for field managers servicing Shoro's vendor network — shift management, inventory hand-off, and end-of-day sales reporting. Replacing a paper-and-1C workflow. Built end-to-end: my schema, my API, my app.",
     role: {
       label: "Full-stack, solo",
       context:
-        "Requirements gathering, Prisma schema, NestJS API, React Native UI. Designed the integration contract with the legacy 1C system as a single GET endpoint.",
+        "Sole engineer from requirements to schema to UI. NestJS API, PostgreSQL via Prisma, React Native client. 1C remains the source of truth — I designed the exchange contract against it.",
     },
     stack: [
       "React Native",
@@ -143,14 +138,14 @@ export const PROJECTS: Project[] = [
       "NestJS",
       "Prisma",
       "PostgreSQL",
-      "NativeWind",
-      "Zustand",
+      "TypeScript",
+      "Redux Toolkit",
     ],
     highlights: [
-      "Integration contract with legacy 1C — single GET endpoint, minimal partner workload",
-      "Custom 4-step shift wizards with haptic feedback and gesture controls",
-      "All UI components built from scratch — no UI library dependency",
-      "Offline-first auth with secure storage and hydration gates",
+      "Managers open shifts per vendor, track inventory hand-off through the day, and submit end-of-day reports — replacing paper sheets and manual 1C entry for ~50 managers across 501 vendors",
+      "Designed a versioning system end-to-end: a min/max version table, build-time version signing, and a periodic check that returns OK / SOFT_UPDATE / FORCE_UPDATE — soft shows an update banner, force blocks the app until updated",
+      "Built versioning deliberately after hitting forced-update pain on an earlier app without backend control — this time I own the backend, so I solved it properly",
+      "1C is the source of truth for managers, points, products, and vendors; I designed the exchange contract and am integrating against it",
     ],
   },
 ];
