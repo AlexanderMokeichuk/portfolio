@@ -64,8 +64,6 @@ export const PROJECTS: Project[] = [
     featured: true,
     hasCaseStudy: true,
   },
-
-  // TODO: refine with real context — placeholder copy below
   {
     slug: "shoro-eje-rating",
     index: "02",
@@ -74,16 +72,15 @@ export const PROJECTS: Project[] = [
     company: "Shoro",
     title: "Shoro Sellers Platform",
     tagline:
-      "Admin platform for managing street-vendor profiles, QR-driven customer ratings, and review analytics. Replaced a legacy PHP MVC system end-to-end.",
+      "Admin platform for managing Shoro's street-vendor network. CRUD over vendor profiles, QR-driven customer ratings, complaint routing, and analytics. Rebuilt a legacy PHP MVC admin end-to-end on a modern stack.",
     role: {
       label: "Full-stack, solo",
       context:
-        "Schema, REST API, admin SPA, mobile bio view, integrations. Built the new stack on top of the existing database without breaking the legacy consumer-facing flow.",
+        "Owned the admin platform end-to-end: REST API, SPA, and the email-alert worker. The customer-facing rating app is built by a separate team — I integrate with it, not own it.",
     },
     stack: [
       "React 19",
       "TypeScript",
-      "Vite",
       "Express",
       "Prisma",
       "MySQL",
@@ -93,52 +90,47 @@ export const PROJECTS: Project[] = [
       "Docker",
     ],
     highlights: [
-      "Migrated a legacy PHP MVC admin to a modern stack while preserving the public-facing rating flow",
-      "Background worker monitors negative reviews and notifies managers within minutes",
-      "Zero post-release issues since launch",
-    ],
-    metrics: [
-      { label: "Migration scope", value: "PHP → JS" },
-      { label: "Post-release bugs", value: "0" },
+      "Rebuilt a legacy PHP MVC admin as a REST API + SPA — chosen so I could own and extend it going forward",
+      "Reproduced the full existing feature set, then improved UX: search, filtering, cleaner workflows",
+      "Email-alert worker routes negative ratings straight to the complaints department",
+      "Generates downloadable per-vendor QR codes that link to the customer rating app",
     ],
   },
-
-  // TODO: refine with real context — placeholder copy below
   {
     slug: "voda-dispatcher",
     index: "03",
-    period: "2024",
+    period: "2024 — now",
     status: "production",
     company: "Shoro",
-    title: "Dispatcher Mobile App",
+    title: "Field Delivery App",
     tagline:
-      "Cross-platform mobile app for delivery dispatchers. Drag-and-drop order queue, real-time status sync with the customer-facing platform.",
+      "Mobile app for field couriers. Replaced paper delivery sheets with a live order queue, drag-and-drop sorting, status sync, and on-route sales. Backed by the same CRM server.",
     role: {
       label: "Mobile, solo",
-      context: "Designed and shipped from requirements to release. Single-handed delivery.",
+      context:
+        "Designed and shipped the React Native app end-to-end. The backend is the existing CRM API; the customer-facing ordering app is a separate team's product.",
     },
-    stack: ["React Native", "Expo", "TypeScript", "Redux Toolkit", "React Query", "AsyncStorage"],
+    stack: ["React Native", "Expo", "TypeScript", "Redux Toolkit", "React Query"],
     highlights: [
-      "Drag-and-drop queue UI optimized for one-handed mobile use",
-      "Real-time status synchronization with the partner customer app",
-      "Daily production use by the delivery team",
+      "Replaced paper delivery sheets — couriers get a live daily order queue with drag-and-drop reordering",
+      "Order statuses sync in real time to the CRM, and onward to 1C; customers see progress in the partner ordering app",
+      "Grew with real usage: couriers started selling on routes, so I added client search by region/address and two sale flows — instant (completed on the spot) and request (lands in CRM for operator review)",
+      "In daily production with ~30 couriers",
     ],
   },
-
-  // TODO: refine with real context — placeholder copy below
   {
     slug: "shoro-field-ops",
     index: "04",
     period: "2026 — in development",
     status: "in-development",
     company: "Shoro",
-    title: "Field Operations Mobile App",
+    title: "Field Operations App",
     tagline:
-      "Mobile-first operations platform for field managers. Shift wizards, route planning, QR-based inventory, offline-first auth. Designed end-to-end from requirements to schema to UI.",
+      "Mobile platform for field managers servicing Shoro's vendor network — shift management, inventory hand-off, and end-of-day sales reporting. Replacing a paper-and-1C workflow. Built end-to-end: my schema, my API, my app.",
     role: {
       label: "Full-stack, solo",
       context:
-        "Requirements gathering, Prisma schema, NestJS API, React Native UI. Designed the integration contract with the legacy 1C system as a single GET endpoint.",
+        "Sole engineer from requirements to schema to UI. NestJS API, PostgreSQL via Prisma, React Native client. 1C remains the source of truth — I designed the exchange contract against it.",
     },
     stack: [
       "React Native",
@@ -146,14 +138,14 @@ export const PROJECTS: Project[] = [
       "NestJS",
       "Prisma",
       "PostgreSQL",
-      "NativeWind",
-      "Zustand",
+      "TypeScript",
+      "Redux Toolkit",
     ],
     highlights: [
-      "Integration contract with legacy 1C — single GET endpoint, minimal partner workload",
-      "Custom 4-step shift wizards with haptic feedback and gesture controls",
-      "All UI components built from scratch — no UI library dependency",
-      "Offline-first auth with secure storage and hydration gates",
+      "Managers open shifts per vendor, track inventory hand-off through the day, and submit end-of-day reports — replacing paper sheets and manual 1C entry for ~50 managers across 501 vendors",
+      "Designed a versioning system end-to-end: a min/max version table, build-time version signing, and a periodic check that returns OK / SOFT_UPDATE / FORCE_UPDATE — soft shows an update banner, force blocks the app until updated",
+      "Built versioning deliberately after hitting forced-update pain on an earlier app without backend control — this time I own the backend, so I solved it properly",
+      "1C is the source of truth for managers, points, products, and vendors; I designed the exchange contract and am integrating against it",
     ],
   },
 ];
